@@ -1,0 +1,23 @@
+﻿@page "/AgoraVoice"
+@inject IJSRuntime JS;
+
+<h3>Agora Voice Call</h3>
+<button @onclick="JoinCall">Join Call</button>
+<button @onclick="LeaveCall">Leave Call</button>
+
+@code {
+    private string appId = "92996cd9b7f74bbcadf35aee17fc8e52"; 
+    private string channel = "testing"; 
+    private string token = "007eJxTYFh2VennK/mw4F+Fs3NaXaoClyVeWit6syxgE1NR17UL3xgVGCyNLC3NklMsk8zTzE2SkpITU9KMTRNTUw3N05ItUk2NanZUpDUEMjK8YC5hZmSAQBCfnaEktbgkMy+dgQEARmcizg=="; 
+    private int uid = 0; 
+
+    private async Task JoinCall()
+    {
+        await JS.InvokeVoidAsync("initializeAgora", appId, channel, token, uid);
+    }
+
+    private async Task LeaveCall()
+    {
+        await JS.InvokeVoidAsync("leaveCall");
+    }
+}
